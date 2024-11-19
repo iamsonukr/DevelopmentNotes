@@ -1,0 +1,52 @@
+/* _____________________ EM and REM _________________ */
+
+/* Parent element */
+.parent {
+    font-size: 16px;
+}
+/* Child element */
+.child {
+    font-size: 2em; /* 2 * 16px = 32px */
+}
+
+/* Root element */
+html {
+    font-size: 16px;
+}
+/* Any element using rem */
+.element {
+    font-size: 2rem; /* 2 * 16px = 32px */
+}
+
+/* _____________________ Screen Widgets _________________ */
+
+/* Extra Small (Mobile) */
+@media (max-width: 576px) {
+    /* Styles for extra small screens */
+  }
+  
+  /* Small (Mobile) */
+  @media (min-width: 576px) and (max-width: 768px) {
+    /* Styles for small screens */
+  }
+  
+  /* Medium (Tablet) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    /* Styles for medium screens */
+  }
+  
+  /* Large (Desktop) */
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Styles for large screens */
+  }
+  
+  /* Extra Large (Large Desktop) */
+  @media (min-width: 1200px) and (max-width: 1399.98px) {
+    /* Styles for extra large screens */
+  }
+  
+  /* Extra Extra Large (Very Large Desktop) */
+  @media (min-width: 1400px) {
+    /* Styles for extra extra large screens */
+  }
+  

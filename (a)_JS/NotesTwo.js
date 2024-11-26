@@ -1,3 +1,19 @@
+function helloWorld(){
+    console.log("HEllo world")
+}
+
+const hello2=()=>{
+    console.log("Hello world")
+}
+
+hello2()
+
+const addTwo=(a,b)=>{
+    console.log(a+b)
+}
+
+addTwo(10,11)
+
 function outerFunction() {
     let outerVariable = 'I am outside!';
     

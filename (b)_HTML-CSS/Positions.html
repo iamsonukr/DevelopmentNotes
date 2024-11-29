@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Positioning Example</title>
+  <style>
+    .divOne{
+        height: 130vh;
+        background-color: yellow;
+        /* position: relative; */
+    }
+    .divTwo{
+        height: 100vh;
+        background-color: rgb(89, 89, 0);
+      
+    }
+    .childOne{
+        background-color: red;
+        height: 300px;
+        width: 400px;
+        position: absolute;
+        right: 40px;
+        top: 130px;
+    }
+    .stickMe{
+        position: sticky;
+        height: 10vh;
+        top: 0;
+        width: 100vw;
+        background-color: red;
+    }
+  </style>
+</head>
+<body>
+    <div class="divTwo">
+        
+    </div>
+    <div class="stickMe">
+
+    </div>
+
+    <div class="divOne">
+        <div class="childOne">
+
+        </div>
+
+    </div>
+
+</body>
+</html>

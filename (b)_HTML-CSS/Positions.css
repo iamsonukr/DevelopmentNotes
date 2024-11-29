@@ -1,0 +1,64 @@
+/* 1. static (Default Position)
+
+Definition: This is the default positioning for all elements. Elements are placed in the normal document flow, and top, right, bottom, and left properties are ignored.
+Behavior: No special positioning; the element appears as it would naturally in the layout.
+Use Case: For content that doesn’t need manual adjustment. */
+
+div {
+    position: static; /* Default value */
+  }
+  
+
+/* 2. relative
+Definition: The element is positioned relative to its normal position in the document flow.
+Behavior: Using top, right, bottom, or left shifts the element without affecting the layout of surrounding elements.
+Use Case: To "nudge" an element slightly for alignment without disrupting the flow. */
+
+div {
+    position: relative;
+    top: 10px;  /* Moves the element 10px down */
+    left: 20px; /* Moves the element 20px to the right */
+  }
+  
+  /* 3. absolute
+Definition: The element is removed from the normal document flow and positioned relative to the nearest positioned ancestor (an ancestor with relative, absolute, or fixed positioning).
+Behavior: The element does not affect other elements and is positioned using top, right, bottom, or left.
+Use Case: Overlay elements, tooltips, dropdowns, or precisely positioned items. */
+
+.container {
+    position: relative;
+  }
+  .child {
+    position: absolute;
+    top: 0;
+    left: 0; /* Positions the child element at the top-left corner of the container */
+  }
+
+  
+  /* 4. fixed
+Definition: The element is positioned relative to the viewport and remains fixed during scrolling.
+Behavior: It does not move with the rest of the document.
+Use Case: Sticky headers, floating buttons, or any element that must remain visible.
+Key Point: fixed elements are always relative to the viewport, ignoring other elements.
+
+Example: */
+
+div {
+    position: fixed;
+    top: 10px;
+    right: 10px; /* Fixed to the top-right corner of the screen */
+  }
+  
+
+  /* 5. sticky
+  Definition: A hybrid between relative and fixed. The element is treated as relative until a certain scroll position is reached, after which it behaves like fixed.
+  Behavior: Sticks to its parent element when scrolling.
+  Use Case: Sticky navigation bars, headers, or section indicators.
+  Key Point: Requires a scrolling container or page and a defined top, right, bottom, or left.   */
+
+
+  div {
+    position: sticky;
+    top: 0; /* Sticks to the top when scrolling */
+  }
+      

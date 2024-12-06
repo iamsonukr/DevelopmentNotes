@@ -1,0 +1,27 @@
+----------------------------------- Gradient -------------------------------------
+
+------Linear Gradient--------------
+
+background: linear-gradient(direction, color1, color2, ...);
+
+background: linear-gradient(to right, red, yellow);
+
+background: linear-gradient(45deg, red, yellow, green, blue);
+
+background: linear-gradient(to bottom, red 0%, yellow 50%, green 100%);
+
+------ Radial Gradient----
+
+background: radial-gradient(shape size at position, color1, color2, ...);
+
+background: radial-gradient(circle, red, yellow);
+
+background: radial-gradient(ellipse at center, red, yellow, green);
+
+background: radial-gradient(ellipse closest-side, red, yellow);
+
+background: repeating-linear-gradient(45deg, red, yellow 20%, green 40%);
+
+background: repeating-radial-gradient(circle, red, yellow 10%, green 20%);
+
+

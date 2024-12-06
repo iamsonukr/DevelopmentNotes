@@ -1,4 +1,4 @@
-<!-- -----------------------CSS Lecture 1: Introduction to CSS---------------- -->
+<!-- -----------------------CSS Lecture 1: Introduction to CSS------------------------------------------------------------------- -->
 
 1. What is CSS?
 CSS (Cascading Style Sheets) is used to style HTML elements.
@@ -52,7 +52,7 @@ External CSS to style a button.
 
 
 
-<!-- -----------------------------------CSS Lecture 2: Box Model and Layout Basics--------------------- -->
+<!-- -----------------------------------CSS Lecture 2: Box Model and Layout Basics------------------------------------------------------- -->
 
 1. CSS Box Model
 The box model is the foundation of layout in CSS. Every HTML element is a rectangular box consisting of the following layers:
@@ -120,7 +120,7 @@ Use position: relative to shift an element slightly.
 Experiment with the overflow property on a container with excess content.
 
 
--------------------------- CSS Lecture 3: Styling Text and Fonts ---------------------
+-------------------------- CSS Lecture 3: Styling Text and Fonts -------------------------------------------------------------------------
 
 1. Text Properties
 Color: Sets the color of the text.
@@ -189,7 +189,7 @@ Add a shadow effect to a heading.
 Use Google Fonts to apply a custom font.
 
 
-<!-- ------------------------------------CSS Lecture 4: Backgrounds and Gradients --------------------- -->
+<!-- ------------------------------------CSS Lecture 4: Backgrounds and Gradients ---------------------------------------------------------- -->
 
 1. Background Color
 Adds a background color to an element.
@@ -262,7 +262,7 @@ Add a linear gradient as the background for a header.
 Use multiple backgrounds to create a layered effect.
 
 
-<!-- -------------------------------CSS Lecture 5: Flexbox (Flexible Box Layout) -------------------------------->
+<!-- ------------------------------------------------------CSS Lecture 5: Flexbox (Flexible Box Layout) --------------------------------------------------->
 
 1. What is Flexbox?
 Flexbox is a layout model in CSS designed for arranging items within a container, even when their sizes are dynamic. It simplifies alignment, spacing, and distribution of elements.
@@ -346,7 +346,7 @@ Experiment with flex-direction and justify-content.
 Adjust individual items using flex and order.
 
 
-<!-- ----------------------CSS Lecture 6: Grid Layout ------------------>
+<!-- ---------------------------------------------------------CSS Lecture 6: Grid Layout --------------------------------------------------->
 
 1. What is CSS Grid?
 CSS Grid Layout is a two-dimensional layout system that allows you to design complex layouts with rows and columns.
@@ -457,7 +457,7 @@ Experiment with grid-column and grid-row to position items manually.
 
 
 
------------------ CSS Lecture 7: Positioning and Z-Index -----------------------
+------------------------------------------------------------ CSS Lecture 7: Positioning and Z-Index ---------------------------------------
 
 1. Positioning Types
 CSS provides several positioning schemes to control the position of elements within a page.
@@ -600,7 +600,7 @@ Experiment with position: absolute and z-index to layer two overlapping elements
 Create a sticky header that stays at the top of the page while scrolling.
 
 
-<!-- ---------------------------------CSS Lecture 8: Transitions, Animations, and Responsive Design ---------------->
+<!-- -------------------------------------------CSS Lecture 8: Transitions, Animations, and Responsive Design -------------------------------->
 
 1. CSS Transitions
 CSS transitions allow you to change property values smoothly over a given duration when a state changes (e.g., hover).
@@ -714,6 +714,7 @@ Example: Mobile-Friendly Layout
         align-items: center;
     }
 }
+
 Multiple Media Queries: Combine multiple conditions to fine-tune responsiveness.
 
 @media (max-width: 768px) and (orientation: portrait) {
@@ -796,7 +797,7 @@ Create a grid layout that changes from a single column on mobile devices to two 
 Use media queries to adjust font sizes for different screen sizes (small, medium, and large).
 
 
-<!-- ------------------ CSS Lecture 9: Advanced Selectors, Pseudo-Classes, and Pseudo-Elements --------------------- -->
+<!-- ----------------------------------------------- CSS Lecture 9: Advanced Selectors, Pseudo-Classes, and Pseudo-Elements ----------------------------------- -->
 
 1. Advanced Selectors
 CSS provides advanced selectors that allow you to target specific elements based on their attributes, position, or relationship with other elements.
@@ -977,7 +978,7 @@ Create a button that changes its background color when hovered and displays a me
 Create a paragraph where the first letter is larger and a different color using the ::first-letter pseudo-element.
 
 
--------------------------- CSS Lecture 10: Advanced Layout Techniques – Flexbox, Grid, and CSS Variables --------------------
+-------------------------------------- CSS Lecture 10: Advanced Layout Techniques – Flexbox, Grid, and CSS Variables --------------------------------
 
 1. CSS Flexbox
 Flexbox is a one-dimensional layout model that helps distribute space along a row or column.
@@ -1030,6 +1031,7 @@ align-self: Allows individual flex items to override align-items on the containe
     align-self: flex-start;
 }
 
+
 2. CSS Grid Layout
 CSS Grid is a two-dimensional layout system that allows you to arrange items in rows and columns.
 
@@ -1059,7 +1061,8 @@ grid-template-areas: Allows naming specific grid areas for easier layout control
         "main main sidebar"
         "footer footer footer";
 }
-Grid Item Properties:
+
+------------Grid Item Properties:-----------
 
 grid-column: Defines the horizontal placement of a grid item.
 
@@ -1106,7 +1109,8 @@ body {
 }
 By adding the class .dark-theme to the body or any parent element, the variables change, providing a simple theming solution.
 
-4. Responsive Layouts with Flexbox and Grid
+------------------------------------------------------------4. Responsive Layouts with Flexbox and Grid----------------------------------------------
+
 You can use Flexbox and Grid to create layouts that adapt to various screen sizes using media queries.
 
 Example: Flexbox with Media Queries
@@ -1191,7 +1195,7 @@ Define CSS variables for a light and dark theme and switch between them with a c
 
 
 
-<!-- ------------------------- CSS Lecture 11: Animations, Transitions, and Transformations ------------- -->
+<!-- ----------------------------------------------- CSS Lecture 11: Animations, Transitions, and Transformations ----------------------------- -->
 
 1. CSS Transitions
 CSS transitions allow you to change property values smoothly over a given duration.
@@ -1242,6 +1246,7 @@ element {
         /* final styles */
     }
 }
+
 name: The name of the keyframes animation.
 duration: How long the animation lasts.
 timing-function: Speed curve of the animation (same as in transitions).
@@ -1275,6 +1280,7 @@ Example: Simple Animation
 </style>
 In this example, the .box element moves horizontally back and forth.
 
+
 3. Animation Keyframes
 Keyframes define the specific steps in an animation, specifying the state of the element at various points.
 
@@ -1294,7 +1300,10 @@ Example: Bounce Animation
     background-color: red;
     animation: bounce 1s ease-in-out infinite;
 }
-4. CSS Transforms
+
+
+-------------------------------------------------------4. CSS Transforms-----------------------------------------------
+
 CSS transforms allow you to apply various transformations (like rotation, scaling, and translation) to elements.
 
 Transform Functions:
@@ -1342,7 +1351,10 @@ Example: Transforming an Element
 </style>
 In this example, the .box rotates and scales up when hovered.
 
-5. Combining Transitions, Animations, and Transforms
+
+
+---------------------------------------5. Combining Transitions, Animations, and Transforms--------------------------------0
+
 You can combine transitions, animations, and transforms to create more complex effects.
 
 Example: Animated Button with Hover Effect
@@ -1370,7 +1382,8 @@ Example: Animated Button with Hover Effect
 </style>
 Here, the button moves upward when hovered and changes color. When clicked (active), it moves down a little.
 
-6. Performance Tips for Animations and Transitions
+-----------------------------------------6. Performance Tips for Animations and Transitions-----------------------------
+
 Use will-change: Helps the browser prepare for specific property changes to improve performance.
 
 .box {

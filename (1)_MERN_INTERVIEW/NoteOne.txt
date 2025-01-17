@@ -1,0 +1,150 @@
+MERN Stack Developer Interview Questions and Answers 2024
+Here are the technical interview questions for freshers & Experienced 2024:
+
+1. What is a MERN Stack Developer?
+A MERN Stack Developer is a software engineer who is responsible for writing server-side web application logic. MERN stack is the combination of MongoDB, Express.js, ReactJS, and NodeJS; which helps in the full-stack development of websites. This stack provides a complete solution from front to backend making it effortless and time-saving.
+
+2. List the technologies in the MERN Stack.
+MongoDB: A NoSQL database designed for storing JSON-like documents.
+Express.js: A web application framework for Node.js to help server-side logic and routing.
+React.js: It is a JavaScript library that is used to create interactive user interfaces with reusable components.
+Node.js: This is an environment where JavaScript code can run on the server side.
+
+3. What are the key building blocks of React?
+Components: Reusable pieces of UI can be either class-based or functional.
+JSX: Syntax extension allowing HTML-like code within JavaScript.
+Props: It is advisable to note that props are short for ‘properties’ and are used to pass data from parent to child components.
+State: Manages data that changes over time within a component.
+Context: This presents a way to pass data through the component tree without doing it on all levels.
+Virtual DOM: It is a JSON object that represents the actual DOM for better performance of rendering engines.
+
+4. Explain Replication and Sharding in MongoDB.
+Replication: Replication multiplies data copies among several servers (called Replica Sets) to enable higher availability and fault tolerance of the system.
+Sharding: Sharding is used to distribute data across different servers or clusters to cater to a very large dataset and high write/read throughput, thus increasing scalability.
+
+5. What are Higher-Order Components (HOCs) in React?
+Higher-order components are functions that take a component and return a new component with additional props or logic. They’re used for code reuse, logic abstraction and to make React Component Transformations.
+
+6. What is Reconciliation in React?
+In React, Reconciliation is the process used to update the DOM efficiently. When the state or props of a component change, React compares the new Virtual DOM with the old one and updates only the parts of the Real DOM that have changed.
+
+7. What is the difference between Class and Functional components in React?
+Class Components: Use ES6 class syntax, which can have lifecycle methods and manage state internally.
+Functional Components: Use functions and hooks such as (e.g. useState, useEffect) for state management and side effects, which are generally easier to read and preferred over classes that also have better performance.
+
+    8. What is the purpose of the useEffect Hook in React?
+    The useEffect Hook allows you to run some side effects (like API calls, setting timers, etc.)
+    after rendering a component. It can also be used to clean up after the component is unmounted.
+
+    9. What is the purpose of the useState Hook in React?
+    The useState Hook allows you to add some local state to functional components.
+
+    10. What is the purpose of the useContext Hook in React?
+    The useContext Hook allows you to access the context of a component from a functional component.
+
+    11. What is the purpose of the useReducer Hook in React?
+    The useReducer Hook allows you to manage state in a functional component using a reducer function.
+
+    12. What is the purpose of the useCallback Hook in React?
+    The useCallback Hook allows you to memoize a function so that it is not recreated on every render.
+
+    13. What is the purpose of the useMemo Hook in React?
+    The useMemo Hook allows you to memoize a value so that it is not recalculated on every render
+    
+    14. What is the purpose of the useLayoutEffect Hook in React?
+    The useLayoutEffect Hook allows you to run some side effects after rendering a component.
+
+
+8. What is React.js, and How is it described and characterized by the usage of key characteristics? 
+React.js is a Javascript software library developed by Facebook, is a perfect way to build fast and efficient user interfaces, especially those that are running on a client's computer and can interact without waiting for the server's response. 
+
+The main features are:
+
+Component-Based Architecture: Allows for reusable UI components.
+Virtual DOM: Improves the site's speed by making indirect manipulation on the real DOM.
+JSX Syntax: Facilitates the writing of HTML-like code in JavaScript.
+Hooks: These are the functions that are used to manipulate states and React features (this refers to the state that is updated inside the function) without the use of classes.
+9. Explain the MVC Architecture and How it relates to the MERN stack
+The MVC architecture has three components: Model, View, and Controller, which work together very closely. 
+
+Model: The Model component represents the data and business logic of the application (e.g., MongoDB for data storage). 
+
+View: The View represents the user interface of the application (e.g., React components for rendering). 
+
+Controller: The Controller component is responsible for receiving users' input and accessing the model components (e.g., routes in Express.js for indicating server-side logic necessary for managing the model). 
+
+10. What are streams and the types of streams in Node.js?
+Streams are objects that allow you to read and write data efficiently. They come in various types including:
+
+Readable Streams: Allow you to read data (e.g., fs.createReadStream()).
+Writable Streams: Allow you to write data (e.g., fs.createWriteStream()).
+Duplex Streams: Support both reading and writing (e.g., net.Socket).
+Transform Streams: Modify the data as it is being read and written (e.g., zlib.createDeflate())
+11. What is the role of Express.js in the MERN Stack?
+In the MERN Stack, Express.js is a powerful framework for creating both server-side web applications and APIs that can serve incoming requests over HTTP, handle all routing requests, and support HTTP client requests from, for example, a client-side React application to a MongoDB database.
+
+12. What are Buffers in Node.js and What do you use them for?
+Buffers are used to interact with data in raw binary form directly in memory. They provide a method to work with streams of binary data and are needed for tasks such as file manipulation and network communication.
+
+13. Describe the purpose and features of MongoDB.
+MongoDB is a NoSQL database paradigm designed to be flexible and scalable. It holds data in documents like JSON objects and can offer flexible schemas, indexing, aggregation, and sharding to help manage your data more efficiently, including organizing, retrieving, and managing data.
+
+14. How do you Manage Packages in a Node.js Project?
+In a Node.js project, you will manage Node.js dependencies with npm (Node Package Manager) or yarn, which will be used to install, update, and manage the project's dependencies. By creating a package.json file, Node.js will know the project's dependencies. npm or yarn will also create a package-lock.json or yarn.lock file, which makes sure subsequent installs of dependencies will be the same version in different environments.
+
+15. What is the Event Loop in Node.js?
+The event loop in Node.js serves to keep Node.js applications running without interruption. When an asynchronous task is completed, a task gets pushed to the event queue, where the event loop then processes the task before running the task in Node.js's main thread. In this way, Node.js's event loop ensures that JavaScript can run without blocking I/O tasks and without needing to handle asynchronous code in different processes, threads, or environments.
+
+16. What are Route Handlers and Middleware in Express.js, and How do you define a Route Handler?
+In Express.js, the route handlers, and middleware functions serve distinct purposes:
+
+Route Handlers: Functions that execute when a specific route is requested. They process requests and send responses. Defined using app.METHOD() where METHOD is the HTTP method (e.g., get, post).
+
+Example:‍
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+Middleware Functions: Functions that run before or after route handlers to modify request/response objects or perform tasks like logging and authentication.
+
+Example:
+
+app.use((req, res, next) => {
+  console.log('Request received');
+  next(); // Pass control to the next handler
+});
+
+17. What is the use of Redux in React Applications? 
+Redux is a state management tool that provides a predictable state container for JavaScript applications. Redux is designed to help manage application states in a single store so that state changes are predictable and debuggable within action creators and reducers. 
+
+18. What are the different parts of Redux?
+Store: Used to store application state.
+Action: The way to describe what happened.
+Reducer: A function that determines changes to an application's state.
+19. What is a React Router and How it is used?
+React Router is a library used for handling routing in React applications. It facilitates navigation between different components based on the browser's URL, ensuring that the URL reflects the currently displayed component. This library allows for dynamic component rendering and maintains synchronization between the URL and the view, similar to how web browsers manage URLs.
+
+20. What distinguishes Shadow DOM from Virtual DOM?
+Shadow DOM: It encapsulates a component's internal structures and styles so they don't conflict with the rest of the document.
+Virtual DOM: A lightweight copy of the real DOM used by React to optimize rendering, reducing direct updates to the real DOM.
+21. What is REPL in Node.js?
+REPL stands for "Read-Eval-Print Loop." It's an environment within Node.js that provides an interactive mode for the execution of JavaScript code. Below is how the REPL works:
+
+READ: The REPL reads (or requests) the user input and parses it into a JavaScript data structure.
+EVAL: The REPL evaluates (or runs) the parsed data structure as JavaScript code.
+PRINT: The REPL prints the result of the evaluation to the console.
+LOOP: The REPL loops the previous two actions again after processing context directly within a persistent context if required.
+REPL is highly used for testing code snippets and debugging.
+
+22. What is a "Callback" in Node.js?
+A callback is a function passed as an argument to another function once the execution of the other function is completed. Callbacks help handle asynchronous operations like reading files or requests and enable it to be the primary solution for handling such operations, which emphasizes its importance in Node.js. For example, when you read a file, you can provide a callback function, and Node.js will call it once the file is read. It prevents blocking the execution and enables the program to continue running other code while waiting for the task to complete.
+
+23. What are JSX and its significance in React?
+JSX is a unique syntax extension for JavaScript, which integrates HTML elements into JavaScript code. JSX assists in making React components easier to write and read. It gets evaluated after it returns an object representation of the virtual DOM.
+
+24. What is Middleware in Node.js and What is its function?
+Middleware in Node.js is a function that deals with requests and responses, among other things. For example, we can utilize middleware to log information, complete authentication, and/or modify the request object. Middleware functions are used with app.use() to fulfill certain aspects of the request-response lifecycle.
+
+25. What is RESTful API and its Principles?
+RESTful APIs use the HTTP methods (GET, POST, PUT, DELETE) to operate on resources that are addressable via URLs. Statelessness (information is not stored or retained across requests), resource-based interactions (based on HTTP protocol), and the regular use of HTTP methods are principles of RESTful APIs.

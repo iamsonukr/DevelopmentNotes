@@ -64,6 +64,7 @@ const [firstName, setFirstName] = useState('Dylan') is a common example.
 const graph: [number, number] = [55.2, 41.3];
 const [x, y] = graph;
 
+
 // --------------------------- TS Objects ------------------------
 
 const car: { type: string, model: string, year: number } = {

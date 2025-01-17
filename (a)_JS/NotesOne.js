@@ -66,6 +66,12 @@ const cars2 = {
 
 }
 
+function myEmployee(id,name,salary){
+    this.id=id;
+    this.name=name;
+    this.salary=salary;
+}
+
 // iterating
 for (let x in cars2) {
     console.log(x + " of the car is " + cars2[x])
@@ -850,3 +856,4 @@ list.addEventListener('click', function (event) {
 // Event Loop: The Event Loop continuously checks the call stack. When the stack is empty, it moves the first callback in the queue to the stack, allowing the asynchronous function to run.
 
 
+// The event loop in Node.js serves to keep Node.js applications running without interruption. When an asynchronous task is completed, a task gets pushed to the event queue, where the event loop then processes the task before running the task in Node.js's main thread.

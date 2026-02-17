@@ -1,0 +1,270 @@
+# 🔐 1️⃣ Security Readiness Questions
+
+# 1 How do you prevent XSS in a React app? -------------------------------------------
+
+23:11
+# XSS (Cross-Site Scripting) is a security vulnerability where attackers inject malicious scripts into web applications that then execute in other users' browsers
+
+# React has built-in XSS protection, but you still need to follow best practices:
+# Built-in Protection
+# React automatically escapes values embedded in JSX before rendering them. When you use {variable} in JSX, React converts special characters to their HTML entities, preventing malicious scripts from executing.
+# jsx// Safe - React escapes this automatically
+# const userInput = '<img src=x onerror="alert(1)">';
+# return <div>{userInput}</div>;
+# // Renders as text, not executable HTML
+# Common Vulnerabilities to Avoid
+# 1. dangerouslySetInnerHTML
+# Avoid using this unless absolutely necessary. If you must use it, sanitize the HTML first with a library like DOMPurify:
+# jsximport DOMPurify from 'dompurify';
+
+# const sanitizedHTML = DOMPurify.sanitize(userContent);
+# return <div dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />;
+
+# 2. Direct DOM Manipulation
+# Avoid using innerHTML, outerHTML, or document.write() directly.
+
+# 3. JavaScript URLs
+# Be careful with user-controlled URLs:
+# jsx// Dangerous
+# <a href={userInput}>Click</a>
+
+# // Safer - validate the protocol
+# const isSafeUrl = url => /^https?:\/\//.test(url);
+# <a href={isSafeUrl(userInput) ? userInput : '#'}>Click</a>
+
+# 4. User Input in Attributes
+# Some attributes can execute JavaScript (like href="javascript:..." or event handlers). Always validate and sanitize.
+# Best Practices
+
+# Validate and sanitize all user input on both client and server
+# Use Content Security Policy (CSP) headers to restrict script sources
+# Content-security-policy: default-src 'self';
+
+# Keep React and dependencies updated
+# Avoid creating React elements from user input using React.createElement() with dynamic types
+# Use TypeScript for type safety
+# Never trust data from external sources (APIs, URLs, localStorage)
+
+# React's default behavior protects you from most XSS attacks, but vigilance with the exceptions above is essential.
+
+
+
+
+# 2 How do you prevent SQL Injection / NoSQL Injection? -----------------------------------------
+
+# SQL Injection Prevention
+# SQL Injection occurs when attackers manipulate database queries by inserting malicious SQL code through user inputs.
+# Example of Vulnerability
+# javascript// DANGEROUS - Never do this!
+# const username = req.body.username;
+# const query = `SELECT * FROM users WHERE username = '${username}'`;
+# // Attacker inputs: ' OR '1'='1
+# // Query becomes: SELECT * FROM users WHERE username = '' OR '1'='1'
+# // Returns all users!
+# Best Practices
+
+# 1. Use Parameterized Queries / Prepared Statements
+# This is the most effective defense:
+# javascript// Node.js with PostgreSQL
+# const query = 'SELECT * FROM users WHERE username = $1 AND password = $2';
+# const values = [username, password];
+# const result = await db.query(query, values);
+
+# // MySQL with mysql2
+# const [rows] = await connection.execute(
+#   'SELECT * FROM users WHERE username = ? AND password = ?',
+#   [username, password]
+# );
+
+# 2. Use ORM/Query Builders
+# ORMs handle escaping automatically:
+# javascript// Sequelize
+# const user = await User.findOne({ where: { username: username } });
+
+# // Prisma
+# const user = await prisma.user.findUnique({ where: { username } });
+
+# // TypeORM
+# const user = await userRepository.findOne({ where: { username } });
+# 3. Input Validation
+# Validate data types and formats:
+# javascript// Validate that ID is actually a number
+# const userId = parseInt(req.params.id, 10);
+# if (isNaN(userId)) {
+#   return res.status(400).json({ error: 'Invalid ID' });
+# }
+
+# 4. Least Privilege
+# Database users should have minimal necessary permissions. Don't use admin accounts for application queries.
+
+# 5. Escape Input (Last Resort)
+# If you absolutely must build dynamic queries, use proper escaping:
+# javascriptconst mysql = require('mysql2');
+# const escaped = mysql.escape(userInput);
+# NoSQL Injection Prevention
+# NoSQL databases (MongoDB, etc.) are also vulnerable to injection attacks.
+# Example of Vulnerability
+# javascript// DANGEROUS
+# const username = req.body.username; // Attacker sends: { $ne: null }
+# const user = await db.collection('users').findOne({ username: username });
+# // Matches ANY username that's not null!
+# Best Practices
+
+# 1. Validate Input Types
+# javascript// Ensure username is actually a string
+# if (typeof username !== 'string') {
+#   return res.status(400).json({ error: 'Invalid input' });
+# }
+
+# const user = await db.collection('users').findOne({ username });
+
+# 2. Sanitize Objects
+# Remove MongoDB operators from user input:
+# javascriptconst sanitize = (obj) => {
+#   if (obj && typeof obj === 'object') {
+#     Object.keys(obj).forEach(key => {
+#       if (key.startsWith('$')) {
+#         delete obj[key];
+#       }
+#     });
+#   }
+#   return obj;
+# };
+
+# const cleanUsername = sanitize(req.body.username);
+# 3. Use Mongoose with Schema Validation
+# javascriptconst userSchema = new mongoose.Schema({
+#   username: { type: String, required: true },
+#   email: { type: String, required: true }
+# });
+
+# // Mongoose validates types automatically
+# const user = await User.findOne({ username });
+# 4. Use mongo-sanitize Package
+# javascriptconst mongoSanitize = require('mongo-sanitize');
+
+# const cleanInput = mongoSanitize(req.body.username);
+# const user = await User.findOne({ username: cleanInput });
+# 5. Avoid $where Operator
+# Never use $where with user input as it allows JavaScript execution:
+# javascript// NEVER do this
+# db.collection.find({ $where: userInput });
+# Universal Best Practices
+
+# Never trust user input - Always validate and sanitize
+# Use allowlists - Define what's acceptable rather than blocking bad patterns
+# Apply defense in depth - Use multiple layers of protection
+# Keep dependencies updated - Security patches matter
+# Use security headers - Content Security Policy, etc.
+# Log and monitor - Detect attack attempts
+# Use Web Application Firewalls (WAF) - Additional protection layer
+
+# The golden rule: Never concatenate user input directly into queries. Always use parameterized queries or ORMs that handle escaping properly.
+
+
+
+
+
+
+# 3 How do you secure environment variables in production?---------------------------
+
+# Quick Checklist
+# ✅ Never commit secrets to git
+# ✅ Use secret management services in production
+# ✅ Encrypt secrets at rest
+# ✅ Rotate secrets regularly
+# ✅ Use IAM roles when possible
+# ✅ Implement least privilege access
+# ✅ Monitor secret access
+# ✅ Use different secrets per environment
+# ✅ Enable audit logging
+# ✅ Scan for accidentally committed secrets
+# The key principle: Treat secrets like passwords - store them securely, never share them publicly, and rotate them regularly.
+
+
+
+#4 What is CORS and how do you configure it properly?
+
+
+
+# How do you protect API routes using authentication?
+
+# How do you handle JWT expiration and refresh tokens?
+
+# What headers should be added for security? (Helmet in Node)
+
+# ⚡ 2️⃣ Performance Questions
+
+# How do you optimize a React app before production?
+
+# What is code splitting?
+
+# What is lazy loading in React?
+
+# How do you reduce bundle size?
+
+# How do you optimize large API responses?
+
+# How do you prevent unnecessary re-renders?
+
+# What is memoization? (React.memo, useMemo, useCallback)
+
+# 🧠 3️⃣ Memory & Resource Management
+
+# What causes memory leaks in React?
+
+# How do you clean up useEffect properly?
+
+# Why should we clear intervals and event listeners?
+
+# How do you cancel API calls on component unmount?
+
+# What happens if we don’t close DB connections in Node?
+
+# 📊 4️⃣ Error Handling & Stability
+
+# How do you handle global errors in React?
+
+# What are Error Boundaries?
+
+# How do you handle unhandled promise rejections in Node?
+
+# How do you implement centralized error handling middleware?
+
+# How do you log errors in production?
+
+# 🔄 5️⃣ API & Backend Safety
+
+# How do you validate request data?
+
+# What is rate limiting and why is it important?
+
+# How do you prevent brute force attacks?
+
+# What is input sanitization?
+
+# Why should we use parameterized queries?
+
+# 🗄 6️⃣ Database Safety
+
+# How do you index a database for performance?
+
+# What is pagination and why is it important?
+
+# Why should we avoid returning 10,000 records at once?
+
+# What happens if two users update the same record simultaneously?
+
+# How do you handle transactions?
+
+# 🚀 7️⃣ Deployment & Production Setup
+
+# What is the difference between development and production builds?
+
+# Why should we not expose stack traces in production?
+
+# How do you manage environment variables in production?
+
+# What is CI/CD?
+
+# How do you monitor server memory usage?

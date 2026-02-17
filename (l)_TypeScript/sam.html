@@ -1,0 +1,299 @@
+% -------------------------
+% Resume in Latex
+  % Author : Jake Gutierrez
+    % Based off of: https://GitHub.com/sb2nov/resume
+% License : MIT
+  % ------------------------
+
+\documentclass[letterpaper, 11pt]{ article }
+\usepackage{ helvet }  % Add this line
+\renewcommand{ \familydefault } { \sfdefault }  % Set the font family to Helvetica
+\usepackage{ xcolor }
+\definecolor{ darkpurple } { RGB } { 48, 25, 52 }
+\definecolor{ royalblue } { RGB } { 65, 105, 225 }
+\definecolor{ modernblue } { RGB } { 41, 128, 185 }  % Modern Flatblue(alternative)
+\definecolor{ navyblue } { RGB } { 0, 73, 153 }      % Navy(alternative)
+
+\usepackage{ latexsym }
+\usepackage[empty]{ fullpage }
+\usepackage{ titlesec }
+\usepackage{ marvosym }
+\usepackage[usenames, dvipsnames]{ color }
+\usepackage{ enumitem }
+\usepackage[hidelinks]{ hyperref }
+\usepackage{ fancyhdr }
+\usepackage[english]{ babel }
+\usepackage{ tabularx }
+\usepackage{ fontawesome5 }
+\usepackage{ multicol }
+\setlength{ \multicolsep } { -3.0pt }
+\setlength{ \columnsep } { -1pt }
+\input{ glyphtounicode }
+\usepackage{ xcolor }
+\pagecolor{ white }
+\usepackage{ microtype }
+\microtypesetup{ letterspace = 18 }
+
+% ----------FONT OPTIONS----------
+% sans - serif
+  % \usepackage[sfdefault]{ FiraSans }
+% \usepackage[sfdefault]{ roboto }
+% \usepackage[sfdefault]{ noto - sans }
+% \usepackage[default]{ sourcesanspro }
+
+% serif
+  % \usepackage{ CormorantGaramond }
+% \usepackage{ charter }
+
+
+\pagestyle{ fancy }
+\fancyhf{ } % clear all header and footer fields
+\fancyfoot{ }
+\renewcommand{ \headrulewidth } { 0pt }
+\renewcommand{ \footrulewidth } { 0pt }
+
+% Adjust margins
+\addtolength{ \oddsidemargin } { -0.6in}
+\addtolength{ \evensidemargin } { -0.5in}
+\addtolength{ \textwidth } { 1.19in}
+\addtolength{ \topmargin } { -.7in}
+\addtolength{ \textheight } { 1.4in}
+
+\urlstyle{ same }
+
+\raggedbottom
+\raggedright
+\setlength{ \tabcolsep } { 0in}
+
+% Sections formatting
+\titleformat{ \section } {
+  \vspace{ -4pt } \scshape\raggedright\large\bfseries
+} { } { 0em } { } [\color{ black }\titlerule \vspace{- 5pt}]
+
+  % Ensure that generate pdf is machine readable / ATS parsable
+\pdfgentounicode = 1
+
+  % -------------------------
+% Custom commands
+\newcommand{ \resumeItem } [1]{
+  \item\small{
+    {#1 \vspace{ -2pt } }
+  }
+}
+
+\newcommand{ \classesList } [4]{
+  \item\small{
+    {#1 #2 #3 #4 \vspace{ -2pt } }
+  }
+}
+
+\newcommand{ \resumeSubheading } [4]{
+  \vspace{ -2pt } \item
+  \begin{ tabular *} { 1.0\textwidth } [t]{l @{ \extracolsep{ \fill } } r
+}
+\textbf{#1 } & \textbf{ \small #2 } \\
+\textit{ \small#3 } & \textit{ \small #4 } \\
+\end{ tabular *} \vspace{ -7pt }
+}
+
+\newcommand{ \resumeSubSubheading } [2]{
+  \item
+  \begin{ tabular *} { 0.97\textwidth } {l @{ \extracolsep{ \fill } } r
+}
+\textit{ \small#1 } & \textit{ \small #2 } \\
+\end{ tabular *} \vspace{ -7pt }
+}
+
+\newcommand{ \resumeProjectHeading } [2]{
+  \item
+  \begin{ tabular *} { 1.001\textwidth } {l @{ \extracolsep{ \fill } } r
+}
+\small#1 & \textbf{ \small #2 } \\
+\end{ tabular *} \vspace{ -7pt }
+}
+
+\newcommand{ \resumeSubItem } [1]{ \resumeItem{#1 } \vspace{ -4pt } }
+
+\renewcommand\labelitemi{ $\vcenter{ \hbox{ \tiny$\bullet$ } } $ }
+\renewcommand\labelitemii{ $\vcenter{ \hbox{ \tiny$\bullet$ } } $ }
+
+\newcommand{ \resumeSubHeadingListStart } { \begin{ itemize } [leftmargin = 0.0in, label = {}] }
+\newcommand{ \resumeSubHeadingListEnd } { \end{ itemize } }
+\newcommand{ \resumeItemListStart } { \begin{ itemize } }
+\newcommand{ \resumeItemListEnd } { \end{ itemize } \vspace{ -5pt } }
+
+% -------------------------------------------
+%%%%%% RESUME STARTS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{ document }
+
+% ----------HEADING----------
+% \begin{ tabular *} { \textwidth } {l @{ \extracolsep{ \fill } } r}
+%   \textbf{
+\href{
+  http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{
+    http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{ tabular *}
+
+    \begin{ center }
+    { \color{ navyblue } \Huge \scshape Sonu Kumar } \\ \vspace{ 1pt }
+    Ranchi, Jharkhand \\ \vspace{ 1pt }
+    \small \raisebox{ -0.1\height } \faPhone\ +91 - 8210490833 ~
+    \href{ mailto:thesonukumar357 @gmail.com } { \raisebox{ -0.1\height } \faEnvelope\ \underline{thesonukumar357 @gmail.com } } ~
+    \href{
+      https://linkedin.com/in/thesonukr/}{\raisebox{-0.1\height}\faLinkedin\ \underline{linkedin.com/in/thesonukr}} ~
+      \href{
+        https://GitHub.com/iamsonukr}{\raisebox{-0.1\height}\faGithub\ \underline{github.com/iamsonukr}} \\ \vspace{2pt}
+        \href{
+          https://thesonukr.vercel.app/}{\raisebox{-0.1\height}\faGlobe\ \underline{https://thesonukr.vercel.app}} \\ \vspace{-8pt}
+          \end{ center }
+
+% ----------- PROGRAMMING SKILLS-----------
+          \section * { \textcolor{ navyblue } { Skills }
+        }
+        \begin{ itemize } [leftmargin = 0.15in, label = {}]
+        \small{
+        \item{
+          \textbf{ Languages } {: C++, JavaScript, TypeScript, Python, Java }
+
+          \vspace{ 0.1pt } % Adds small space between lines
+
+          \textbf{ Frontend } {: HTML, CSS, TailwindCSS, React.js, Context API, Redux, Next.js, SASS, Figma }
+
+          \vspace{ 0.1pt } % Adds small space between lines
+
+          \textbf{ Backend } {: Node.js, MongoDB, SQL, MySQL, NoSQL, REST APIs, Express.js, JWT, Bcrypt }
+
+          \vspace{ 0.1pt } % Adds small space between lines
+
+          \textbf{ Tools / Technologies } {: Git, GitHub, Jenkins CI / CD, Docker, AWS, Jest, Postman, Agile, Jira }
+        }
+        }
+        \end{ itemize }
+        \vspace{ -16pt } % Reduced from - 18pt to account for added internal spacing
+
+
+
+
+          % ----------- EXPERIENCE-----------
+        \section * { \textcolor{ navyblue } { Experience(2 Years 4 months) }
+      }
+      \resumeSubHeadingListStart
+
+      \resumeSubheading
+      {Infyunique Digi Solution Pvt Ltd } {Jan 2025 -- Present }
+      {Software Developer } {Connaught Place, Delhi }
+      \resumeItemListStart
+      \resumeItem{Contributed to payment gateway development, building secure user and merchant dashboards with merchant onboarding system featuring SMS OTP verification and AWS S3 document storage, implementing performance optimizations.}
+      \resumeItem{Developed real - time transaction monitoring and error detection system with automated notifications, reducing resolution time by 40\% through secure API implementation.}
+      \resumeItemListEnd
+
+      \resumeSubheading
+      {Kreativan Technologies } {Mar 2024 -- Jan 2025 }
+      { Full - Stack Web Developer } {IT Park, Chandigarh }
+      \resumeItemListStart
+      \resumeItem{Developed a React.js admin dashboard integrated with a Flutter app, reducing initial load time from 4.2s to 1.8s using lazy loading and code splitting.Implemented Stripe for payment processing and Cloudinary for image uploads.}
+      \resumeItem{Developed dynamic web applications to display data from databases, improving data retrieval speed by \textbf{ 30\%} and increasing user engagement by \textbf{ 20\%} through optimized query performance and responsive design.}
+      \resumeItemListEnd
+
+      \resumeSubheading
+      {Savapak Digital Solutions } {Nov 2023 -- Jan 2024 }
+      {Front End Developer Intern } { Bhubaneswar, Odisha }
+      \resumeItemListStart
+      \resumeItem{Developed responsive web applications using React.js, Tailwind CSS, and Node.js.Collaborated with UX / UI team to implement client requirements and integrated RESTful APIs with MongoDB for efficient data operations.}
+      \resumeItemListEnd
+
+      \resumeSubheading
+      {Baskethunt Private Limited } {Aug 2022 -- Oct 2022 }
+      { IT \& Web Developer Intern } { Sahibganj, Jharkhand }
+      \resumeItemListStart
+      \resumeItem{Developed responsive WordPress sites and React.js applications with SEO optimization, improving Google Lighthouse scores from 32 to 85 through semantic HTML, meta tags, and performance enhancements.Utilized Git for version control.}
+      \resumeItemListEnd
+
+
+
+
+
+      \resumeSubHeadingListEnd
+      \vspace{ -16pt }
+
+% ----------- PROJECTS-----------
+      \section * { \textcolor{ navyblue } { Projects }
+    }
+    \vspace{ -5pt }
+    \resumeSubHeadingListStart
+
+
+    \resumeProjectHeading
+    {
+    \textbf{
+    \href{
+      https://narratozone.vercel.app/    }{Narratozone}} $|$ \emph{MERN, Node.js, Nodemailer, MongoDB, Cloudinary, JWT, Context API, AI Integration}}{Oct 2024}
+      \resumeItemListStart
+      \resumeItem{Built a MERN app enabling users to read, write, and post feeds, featuring secure login with JWT, \textbf{ 95\%} email verification success via Nodemailer, file uploads for \textbf{ 10,000 +} media files using Multer, and data storage integrated with Cloudinary.}
+      \resumeItem{Managed data using MongoDB and powered the backend with Node.js, ensuring seamless performance and scalability.}
+      \resumeItem{Integrated ChatGPT to enhance user engagement by providing dynamic and intelligent content creation assistance.}
+      \resumeItemListEnd
+
+      \vspace{ -16pt }
+      \resumeProjectHeading
+      {
+      \textbf{
+      \href{
+        https://pixelmoments.vercel.app/}{Pixel Moments}} $|$ \emph{MERN, Framer Motion, JSON, GitHub, Razorpay, EmailJs, JWT Authentication,  }}{April 2024}
+        \resumeItemListStart
+        \resumeItem{Built a photography portfolio website with Framer Motion for UI animations and integrated EmailJS for automatic booking confirmations to clients and service providers.Utilized Docker to containerize the application.}
+        \resumeItem{Utilized GitHub for version control, integrated Razorpay for online payments, and developed an admin panel to manage bookings, employees, update booking statuses, and add / edit employee details.}
+        \resumeItemListEnd
+        \vspace{ -16pt }
+        \resumeProjectHeading
+        {
+        \textbf{
+        \href{
+          https://entityfashion.com/}{Entity Fashion}} $|$ \emph{ReactJs, Node.js, MongoDB, JWT, Multer, Razorpay, JSX, ES6, GitHub, Context API}}{Feb 2024}
+          \resumeItemListStart
+          \resumeItem{Developed a full - stack jewelry selling app with Razorpay integration, utilizing MongoDB, Node.js, JWT, Context API, and Multer, reducing transaction processing time by \textbf{ 40\%} and enabling \textbf{ 99\%} uptime for secure, efficient operations.}
+
+          \resumeItem{Built an admin panel for management of jewelry items, where the admin can add, remove, and manage the orders.}
+          \resumeItemListEnd
+
+
+          \resumeSubHeadingListEnd
+          \vspace{ -14pt }
+
+%
+% ----------- INVOLVEMENT---------------
+% ----------- EDUCATION-----------
+          \section * { \textcolor{ navyblue } { Education }
+        }
+          \resumeSubHeadingListStart
+          \resumeSubheading
+          {Shivalik College of Engineering } { Sep. 2020 -- May 2024 }
+          {Bachelor of Technology in Computer Science \& Engineering } { Dehradun, Uttarakhand }
+          \resumeSubHeadingListEnd
+          \vspace{ -12pt }
+% ------RELEVANT COURSEWORK-------
+          \section * { \textcolor{ navyblue } { Achievements }
+        }
+    %\resumeSubHeadingListStart
+
+
+          \begin{ itemize } [itemsep = -2pt, parsep = 1pt]
+          \resumeItem{Delivered 50 + projects across web development, MERN stack applications, and CMS solutions }
+          \end{ itemize }
+          \vspace{ -10pt }
+          \begin{ itemize } [itemsep = -5pt, parsep = 1pt]
+          \resumeItem{Led training workshops for 600 + college students as part of company - college partnerships, teaching modern web development tools and practices.}
+          \end{ itemize }
+
+
+
+          \vspace * { 1.0\multicolsep }
+            %\resumeSubHeadingListEnd
+
+
+
+
+          \end{ document }

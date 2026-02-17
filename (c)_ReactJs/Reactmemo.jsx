@@ -6,7 +6,7 @@ const MemoizedChildComponent = React.memo(({ count }) => {
   return <p>Count in MemoizedChildComponent: {count}</p>;
 });
 
-function ParentComponent11() {
+function ParentComponent11 () {
   const [count, setCount] = useState(0);
   const [text, setText] = useState('');
 
@@ -25,4 +25,4 @@ function ParentComponent11() {
   );
 }
 
-export default ParentComponent;
+export default React.memo(ParentComponent11);

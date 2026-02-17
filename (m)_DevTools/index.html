@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevTools Inspect Practice</title>
+  <script src="./sample.js" defer></script>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .card {
+      width: 300px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: blue;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Inspect & Modify Me</h1>
+
+  <div class="card">
+    <h2>User Profile</h2>
+    <p id="username">Username: Sonu</p>
+    <button class="btn" onclick="toggleDetails()">Toggle Details</button>
+    <p id="details" class="hidden">Email: sonu@example.com</p>
+  </div>
+
+  <script>
+    function toggleDetails() {
+      document.getElementById("details").classList.toggle("hidden");
+    }
+  </script>
+
+</body>
+</html>

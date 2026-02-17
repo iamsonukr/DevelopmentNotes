@@ -2,12 +2,6 @@
 // 1> Schema and ObjectID
 // 2> Optimization
 
-
-
-
-
-
-
 // -------------------------------------What is an ObjectId?--------------------------------------
 
 // ObjectId is a unique identifier used in MongoDB to represent documents.
@@ -72,23 +66,23 @@ const getPostWithAuthor = async () => {
   };
   getPostWithAuthor();
 
-  Output:
+  // Output:
 //   Without .populate():
-  {
-    "title": "My First Post",
-    "content": "This is the content of the post.",
-    "author": "649f3aabc25e8761a9b5c7e2" // ObjectId of the user
-  }
-//   With .populate():
-  {
-    "title": "My First Post",
-    "content": "This is the content of the post.",
-    "author": {
-      "_id": "649f3aabc25e8761a9b5c7e2",
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
-  }
+//   {
+//     "title": "My First Post",
+//     "content": "This is the content of the post.",
+//     "author": "649f3aabc25e8761a9b5c7e2" // ObjectId of the user
+//   }
+// //   With .populate():
+//   {
+//     "title": "My First Post",
+//     "content": "This is the content of the post.",
+//     "author": {
+//       "_id": "649f3aabc25e8761a9b5c7e2",
+//       "name": "John Doe",
+//       "email": "john@example.com"
+//     }
+//   }
   
   // Key Benefits of Using ObjectId:
   

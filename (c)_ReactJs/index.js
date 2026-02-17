@@ -86,6 +86,18 @@
 
 
     // 5. Reduce Bundle Size
+    Definition
+// utils.js
+// export function add(a, b) { return a + b }
+// export function subtract(a, b) { return a - b }
+// export function multiply(a, b) { return a * b }
+// will remove exports which are not imported.
+// Tree shaking =
+// 👉 remove unused code
+// 👉 smaller bundle
+// 👉 faster load
+// 👉 better performance
+// Tree shaking removes unused code from your final bundle.
     // Tree-shaking: Import only the specific functions or components you need, especially from large libraries like lodash, moment, etc.
     // Use webpack or Rollup to remove unused code.
     // Avoid large dependencies if smaller alternatives are available.
@@ -122,6 +134,20 @@
     // Combine API calls when possible to reduce the number of requests.
     // Use Debouncing or Throttling for frequent calls, such as in search inputs.
     // Cache data to avoid redundant requests and reduce load on the server.
+    
+    // | Feature          | Debounce                      | Throttle                           |
+// | ---------------- | ----------------------------- | ---------------------------------- |
+// | Execution timing | After user stops              | During activity at fixed intervals |
+// | Trigger behavior | Waits for silence             | Limits frequency                   |
+// | Number of calls  | Usually 1                     | Many (controlled)                  |
+// | Best use case    | Search, API calls, validation | Scroll, resize, drag, mouse move   |
+// | User typing fast | Only last call runs           | Multiple calls run                 |
+// | Responsiveness   | Slight delay                  | Immediate but limited              |
+// | Performance      | Very low calls                | Moderate calls                     |
+// | Example scenario | Search box                    | Infinite scroll tracking           |
+// | When user stops  | Runs once                     | Stops completely                   |
+// | Goal             | Avoid unnecessary final calls |                                    |
+
 
 
     // 11. Use Service Workers for Caching
@@ -176,14 +202,40 @@
 
     // In React, the concepts of stateful and stateless components refer to how these components manage data internally.
 
-    // 1. Stateful Components (Class Components)
+    // 1. Stateful Components
     // Definition: Stateful components manage their own state. They store and handle data that might change over time and trigger updates in the UI when this data changes.
     // Structure: They were traditionally created using class components in older versions of React, though now functional components with hooks can also handle state.
     // Example: They use this.state in class components or useState hook in functional components.
     // Use case: Components that need to track changing data over time, like form inputs, toggles, and counters.
-    // 2. Stateless Components (Functional Components)
+
+    // 2. Stateless Components 
     // Definition: Stateless components do not manage their own state. They rely entirely on props passed from parent components and don’t maintain or update any internal data.
     // Structure: They are generally written as functional components (using plain functions).
     // Example: They accept props as an argument and render based on those props without any internal state management.
     // Use case: Components that are purely presentational or display-only, like headers, footers, or static content.
+}
+
+    // ___________________________________ Controlled and Uncontolled Component in react _________________________________________________________-
+
+    // Controlled components store form data in React state, while uncontrolled components store it in the DOM using refs.
+    // Who controls the input value? React or the DOM?
+    import { useState } from "react";
+
+function ControlledInput() {
+  const [value, setValue] = useState("");
+
+  return (
+    <input
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
+
+const searchController =async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    
+  }
 }

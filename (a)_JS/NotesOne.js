@@ -4,6 +4,16 @@ show.innerHTML = "it iz wat it iz"
 
 document.getElementById("demo").innerHTML = "Hello World!";
 
+// errors
+
+// ✅ Types of common runtime errors
+// Error	        Happens when
+// ReferenceError	variable not found / TDZ
+// TypeError	    wrong type usage
+// RangeError	    value out of range
+// SyntaxError	    invalid parsing at runtime (JSON etc.)
+// Error	        custom errors
+
 // ________________________________________let, var and const __________________________
 
 // Summary of Features
@@ -66,6 +76,33 @@ const cars2 = {
 
 }
 
+// Setter and getter
+const fruiteOne={
+    name:"banana",
+    class:"fruit",
+    age:12,
+    eatbanana: function(){
+        console.log("eating banana")
+    },
+    get fruitName(){
+        return this.name
+    },
+    set setFruitName(a){
+        return this.name=a
+    }
+}
+
+// Setters run when you assign a value, not call.
+
+fruiteOne.setFruitName="Papaya"
+
+const fruitName=fruiteOne.fruitName
+console.log(fruitName)
+
+fruiteOne.eatbanana()
+
+// anotherone 
+
 function myEmployee(id,name,salary){
     this.id=id;
     this.name=name;
@@ -100,7 +137,7 @@ console.log(mod)
 const mod = cars2.start()
 
 //--------------------APPLY, CALL AND BIND----------------------------
-
+// call, apply, and bind are used to control what this refers to when calling a function.
 const personSyntax = {
     firstName: "Ram",
     lastName: "Kumar",
@@ -194,6 +231,10 @@ for (let i in myObj4.cars) {
     }
     console.log(" ")
 }
+
+// We stringify objects before sending because HTTP transmits text, and JSON strings provide a standardized, language-independent format for data exchange.
+
+// When sending data through HTTP requests, fetch, axios, localStorage, or WebSockets, only strings (text data) can be transmitted or stored, so JavaScript objects must be converted using JSON.stringify()
 
 // JSON.stringify() is a powerful method in JavaScript that converts JavaScript objects into JSON strings. Here are some key benefits of using JSON.stringify():
 
@@ -487,7 +528,33 @@ console.log(total)
 // ----------- ARRAY OPERATIONS --------
 
 // array.slice(start, end);
+// 1️⃣ slice()
+// Does NOT modify original array
+// Returns a new array
+// Used to extract elements
+let arr = [1, 2, 3, 4, 5];
+
+let result = arr.slice(1, 4);
+
+console.log(result); // [2, 3, 4]
+console.log(arr);    // [1, 2, 3, 4, 5] (unchanged)
+
+
+
+
 // array.splice(start, deleteCount, item1, item2, ...);
+// array.splice(start, deleteCount, item1, item2)
+// 🔹 What are item1, item2?
+
+// They are the new elements you want to insert into the array at the given start index.
+
+// You can pass zero, one, or multiple items.
+let arr = [1, 2, 5];
+
+arr.splice(2, 0, 3, 4);
+
+console.log(arr); 
+// [1, 2, 3, 4, 5]
 
 // Reverse
 const students = ["Ram", "Shyam", "Dhyam"]
@@ -641,6 +708,44 @@ const onChangeHandle = (e) => {
     // keys are always enclosed in [] , object or array or string
     setInputs({ ...input, [key]: value })
 }
+
+
+// spread Operator
+
+// 👉 Expands elements (unpacks)
+// Used to copy or combine arrays/objects.
+
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1];
+
+console.log(arr2); // [1, 2, 3]
+
+
+let a = [1, 2];
+let b = [3, 4];
+
+let result = [...a, ...b];
+console.log(result); // [1, 2, 3, 4]
+
+
+// 2️⃣ Rest Operator-----------------
+
+// 👉 Collects elements (packs)
+// Used in function parameters.
+
+function sum(...numbers) {
+  console.log(numbers);
+}
+
+sum(1, 2, 3);
+// [1, 2, 3]
+
+let user = { name: "Sonu" };
+
+let newUser = { ...user, age: 22 };
+console.log(newUser);
+
+
 // _________________________________________ Pure Functions ____________________________________
 
 
@@ -842,6 +947,90 @@ list.addEventListener('click', function (event) {
     }
 });
 
+// ---------------------------------EVENT BUBBLING ------------------------------------------------
+
+// Event Bubbling in JavaScript
+
+// Event Bubbling means an event starts from the target element and then bubbles up to its parent elements.
+
+// 👉 Child → Parent → Grandparent → Document
+
+// 🔹 Example
+// <div id="parent">
+//   <button id="child">Click Me</button>
+// </div>
+
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+});
+
+document.getElementById("child").addEventListener("click", () => {
+  console.log("Child clicked");
+});
+
+// 🔥 Output when button is clicked:
+// Child clicked
+// Parent clicked
+
+
+// ✔ First child
+// ✔ Then parent
+
+// This is event bubbling.
+
+// How to Stop Bubbling
+// event.stopPropagation();
+Example:
+
+document.getElementById("child").addEventListener("click", (event) => {
+  event.stopPropagation();
+  console.log("Child clicked");
+});
+
+
+// ---------------------------  EVENT CAPTURING -----------------------------------------
+
+// Event Capturing in JavaScript
+
+// Event Capturing (also called trickling) is when an event starts from the top of the DOM and travels down to the target element.
+// 👉 Document → Parent → Child
+// 🔹 Event Flow Order
+
+// 1️⃣ Capturing Phase (top → down)
+// 2️⃣ Target Phase
+// 3️⃣ Bubbling Phase (bottom → up)
+
+// By default, JavaScript uses bubbling, not capturing.
+// 🔹 How to Enable Capturing
+// You must pass true as the third parameter in addEventListener().
+// element.addEventListener("click", handler, true);
+
+// 🔹 Example
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+document.getElementById("parent").addEventListener("click",
+  () => {
+    console.log("Parent clicked");
+  },
+  true
+);
+
+document.getElementById('title').addEventListener('click',()=>{console.log("Hello"),true})
+
+document.getElementById("child").addEventListener(
+  "click",
+  () => {
+    console.log("Child clicked");
+  },
+  true
+);
+
+// 🔥 Output when button is clicked:
+// Parent clicked
+// Child clicked
+
 // _________________________________________ Event loop ____________________________________
 
 // The Event Loop is a fundamental concept in JavaScript that handles asynchronous operations, enabling non-blocking I/O. It allows JavaScript to perform tasks such as making network requests or handling timers without blocking the main thread, providing a seamless experience to users.
@@ -857,3 +1046,7 @@ list.addEventListener('click', function (event) {
 
 
 // The event loop in Node.js serves to keep Node.js applications running without interruption. When an asynchronous task is completed, a task gets pushed to the event queue, where the event loop then processes the task before running the task in Node.js's main thread.
+
+
+// --------------- HTML Methods --------------
+

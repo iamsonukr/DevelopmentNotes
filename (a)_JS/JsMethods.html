@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Interview Concepts</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .output {
+            background: #ecf0f1;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🚀 JavaScript Interview Concepts - Complete Guide</h1>
+
+    <!-- 1. HOISTING -->
+    <div class="section">
+        <h2>1. Hoisting</h2>
+        <pre>
+// Variable Hoisting
+console.log(hoistedVar); // undefined (declaration hoisted)
+var hoistedVar = "I'm hoisted";
+
+// let and const are NOT hoisted (Temporal Dead Zone)
+// console.log(notHoisted); // ReferenceError
+let notHoisted = "TDZ";
+
+// Function Hoisting
+hoistedFunction(); // Works!
+function hoistedFunction() {
+    console.log("Function declarations are hoisted");
+}
+
+// Arrow functions are NOT hoisted
+// notHoistedArrow(); // Error
+const notHoistedArrow = () => console.log("Not hoisted");
+        </pre>
+        <button onclick="demonstrateHoisting()">Run Hoisting Demo</button>
+        <div id="hoisting-output" class="output"></div>
+    </div>
+
+    <!-- 2. CLOSURES -->
+    <div class="section">
+        <h2>2. Closures</h2>
+        <pre>
+// Closure: Function that remembers its lexical scope
+function outerFunction(outerVariable) {
+    return function innerFunction(innerVariable) {
+        console.log('Outer:', outerVariable);
+        console.log('Inner:', innerVariable);
+    };
+}
+
+const closure = outerFunction('outside');
+closure('inside');
+
+// Practical Example: Counter
+function createCounter() {
+    let count = 0;
+    return {
+        increment: () => ++count,
+        decrement: () => --count,
+        getCount: () => count
+    };
+}
+        </pre>
+        <button onclick="demonstrateClosures()">Run Closure Demo</button>
+        <div id="closure-output" class="output"></div>
+    </div>
+
+    <!-- 3. THIS KEYWORD -->
+    <div class="section">
+        <h2>3. 'this' Keyword Context</h2>
+        <pre>
+// 1. Global context
+console.log(this); // Window object (browser)
+
+// 2. Object method
+const obj = {
+    name: 'Object',
+    regularFunction: function() {
+        console.log(this.name); // 'Object'
+    },
+    arrowFunction: () => {
+        console.log(this.name); // undefined (lexical this)
+    }
+};
+
+// 3. Constructor function
+function Person(name) {
+    this.name = name;
+}
+
+// 4. call, apply, bind
+const person1 = { name: 'Alice' };
+function greet(greeting) {
+    console.log(greeting + ', ' + this.name);
+}
+greet.call(person1, 'Hello');
+greet.apply(person1, ['Hi']);
+const boundGreet = greet.bind(person1);
+        </pre>
+        <button onclick="demonstrateThis()">Run 'this' Demo</button>
+        <div id="this-output" class="output"></div>
+    </div>
+
+    <!-- 4. PROMISES & ASYNC/AWAIT -->
+    <div class="section">
+        <h2>4. Promises & Async/Await</h2>
+        <pre>
+// Promise
+const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Promise resolved!');
+    }, 1000);
+});
+
+myPromise
+    .then(result => console.log(result))
+    .catch(error => console.error(error))
+    .finally(() => console.log('Promise completed'));
+
+// Async/Await
+async function fetchData() {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Promise.all, Promise.race, Promise.allSettled
+Promise.all([promise1, promise2, promise3])
+    .then(results => console.log(results));
+        </pre>
+        <button onclick="demonstratePromises()">Run Promise Demo</button>
+        <div id="promise-output" class="output"></div>
+    </div>
+
+    <!-- 5. EVENT LOOP -->
+    <div class="section">
+        <h2>5. Event Loop & Task Queue</h2>
+        <pre>
+console.log('1. Synchronous');
+
+setTimeout(() => {
+    console.log('2. Macro Task (setTimeout)');
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log('3. Micro Task (Promise)');
+});
+
+console.log('4. Synchronous');
+
+// Output: 1, 4, 3, 2
+// Micro tasks run before macro tasks
+        </pre>
+        <button onclick="demonstrateEventLoop()">Run Event Loop Demo</button>
+        <div id="eventloop-output" class="output"></div>
+    </div>
+
+    <!-- 6. PROTOTYPAL INHERITANCE -->
+    <div class="section">
+        <h2>6. Prototypal Inheritance</h2>
+        <pre>
+// Constructor function
+function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.speak = function() {
+    console.log(this.name + ' makes a sound');
+};
+
+function Dog(name, breed) {
+    Animal.call(this, name);
+    this.breed = breed;
+}
+
+// Inherit from Animal
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+    console.log(this.name + ' barks');
+};
+
+// ES6 Classes (syntactic sugar)
+class AnimalES6 {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(this.name + ' makes a sound');
+    }
+}
+        </pre>
+        <button onclick="demonstratePrototype()">Run Prototype Demo</button>
+        <div id="prototype-output" class="output"></div>
+    </div>
+
+    <!-- 7. EVENT DELEGATION -->
+    <div class="section">
+        <h2>7. Event Delegation</h2>
+        <pre>
+// Instead of adding event listeners to each item
+// Add one listener to parent and check target
+
+const list = document.getElementById('heroList');
+list.addEventListener('click', function(e) {
+    if (e.target.tagName === 'LI') {
+        alert('Item clicked: ' + e.target.textContent);
+    }
+});
+
+// Benefits:
+// - Better performance with many elements
+// - Works with dynamically added elements
+// - Less memory usage
+        </pre>
+        <ul id="heroList">
+            <li>Hero 1</li>
+            <li>Hero 2</li>
+            <li>Hero 3</li>
+        </ul>
+        <button onclick="addListItem()">Add New List Item</button>
+    </div>
+
+    <!-- 8. EVENT EMITTER PATTERN -->
+    <div class="section">
+        <h2>8. Event Emitter Pattern (Pub/Sub)</h2>
+        <pre>
+class EventEmitter {
+    constructor() {
+        this.events = {};
+    }
+
+    on(event, listener) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(listener);
+    }
+
+    emit(event, ...args) {
+        if (this.events[event]) {
+            this.events[event].forEach(listener => {
+                listener(...args);
+            });
+        }
+    }
+
+    off(event, listenerToRemove) {
+        if (this.events[event]) {
+            this.events[event] = this.events[event]
+                .filter(listener => listener !== listenerToRemove);
+        }
+    }
+}
+
+// Usage
+const emitter = new EventEmitter();
+emitter.on('userLoggedIn', (user) => {
+    console.log('User logged in:', user);
+});
+emitter.emit('userLoggedIn', { name: 'John' });
+        </pre>
+        <button onclick="demonstrateEventEmitter()">Run Event Emitter Demo</button>
+        <div id="emitter-output" class="output"></div>
+    </div>
+
+    <!-- 9. DEBOUNCING & THROTTLING -->
+    <div class="section">
+        <h2>9. Debouncing & Throttling</h2>
+        <pre>
+// Debounce: Wait until user stops typing
+function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+// Throttle: Execute at most once per interval
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Usage
+const debouncedSearch = debounce((query) => {
+    console.log('Searching for:', query);
+}, 500);
+
+const throttledScroll = throttle(() => {
+    console.log('Scroll event');
+}, 1000);
+        </pre>
+        <input type="text" id="searchInput" placeholder="Type to search (debounced)">
+        <div id="debounce-output" class="output"></div>
+    </div>
+
+    <!-- 10. CURRYING -->
+    <div class="section">
+        <h2>10. Currying</h2>
+        <pre>
+// Transform f(a, b, c) to f(a)(b)(c)
+function curry(func) {
+    return function curried(...args) {
+        if (args.length >= func.length) {
+            return func.apply(this, args);
+        } else {
+            return function(...args2) {
+                return curried.apply(this, args.concat(args2));
+            };
+        }
+    };
+}
+
+// Example
+function sum(a, b, c) {
+    return a + b + c;
+}
+
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
+console.log(curriedSum(1, 2)(3)); // 6
+        </pre>
+        <button onclick="demonstrateCurrying()">Run Currying Demo</button>
+        <div id="curry-output" class="output"></div>
+    </div>
+
+    <!-- 11. CALL, APPLY, BIND -->
+    <div class="section">
+        <h2>11. call(), apply(), bind()</h2>
+        <pre>
+const person = {
+    firstName: 'John',
+    lastName: 'Doe'
+};
+
+function greet(greeting, punctuation) {
+    return greeting + ' ' + this.firstName + ' ' + 
+           this.lastName + punctuation;
+}
+
+// call: invoke immediately with arguments
+console.log(greet.call(person, 'Hello', '!'));
+
+// apply: invoke immediately with array
+console.log(greet.apply(person, ['Hi', '?']));
+
+// bind: create new function with bound context
+const greetJohn = greet.bind(person);
+console.log(greetJohn('Hey', '!!!'));
+
+// Polyfill for bind
+Function.prototype.myBind = function(context, ...args) {
+    const fn = this;
+    return function(...newArgs) {
+        return fn.apply(context, [...args, ...newArgs]);
+    };
+};
+        </pre>
+        <button onclick="demonstrateCallApplyBind()">Run call/apply/bind Demo</button>
+        <div id="cab-output" class="output"></div>
+    </div>
+
+    <!-- 12. DEEP CLONE -->
+    <div class="section">
+        <h2>12. Deep Clone / Shallow Clone</h2>
+        <pre>
+// Shallow Clone
+const original = { a: 1, b: { c: 2 } };
+const shallow = { ...original };
+shallow.b.c = 3; // Affects original!
+
+// Deep Clone Methods
+// 1. JSON method (limitations: no functions, dates, undefined)
+const deepClone1 = JSON.parse(JSON.stringify(original));
+
+// 2. Recursive deep clone
+function deepClone(obj) {
+    if (obj === null || typeof obj !== 'object') return obj;
+    
+    if (obj instanceof Date) return new Date(obj);
+    if (obj instanceof Array) return obj.map(item => deepClone(item));
+    
+    const cloned = {};
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            cloned[key] = deepClone(obj[key]);
+        }
+    }
+    return cloned;
+}
+
+// 3. structuredClone (modern browsers)
+const deepClone3 = structuredClone(original);
+        </pre>
+        <button onclick="demonstrateCloning()">Run Cloning Demo</button>
+        <div id="clone-output" class="output"></div>
+    </div>
+
+    <!-- 13. MEMOIZATION -->
+    <div class="section">
+        <h2>13. Memoization</h2>
+        <pre>
+// Cache function results for performance
+function memoize(fn) {
+    const cache = {};
+    return function(...args) {
+        const key = JSON.stringify(args);
+        if (cache[key]) {
+            console.log('Fetching from cache');
+            return cache[key];
+        }
+        console.log('Calculating result');
+        const result = fn(...args);
+        cache[key] = result;
+        return result;
+    };
+}
+
+// Example: Fibonacci
+const fibonacci = memoize(function(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+});
+
+console.log(fibonacci(10)); // Calculating
+console.log(fibonacci(10)); // From cache
+        </pre>
+        <button onclick="demonstrateMemoization()">Run Memoization Demo</button>
+        <div id="memo-output" class="output"></div>
+    </div>
+
+    <!-- 14. HIGHER ORDER FUNCTIONS -->
+    <div class="section">
+        <h2>14. Higher Order Functions</h2>
+        <pre>
+// Functions that take/return functions
+const numbers = [1, 2, 3, 4, 5];
+
+// map, filter, reduce
+const doubled = numbers.map(n => n * 2);
+const evens = numbers.filter(n => n % 2 === 0);
+const sum = numbers.reduce((acc, n) => acc + n, 0);
+
+// Custom higher order function
+function withLogging(fn) {
+    return function(...args) {
+        console.log('Calling with:', args);
+        const result = fn(...args);
+        console.log('Result:', result);
+        return result;
+    };
+}
+
+const add = (a, b) => a + b;
+const loggedAdd = withLogging(add);
+loggedAdd(2, 3);
+        </pre>
+        <button onclick="demonstrateHOF()">Run HOF Demo</button>
+        <div id="hof-output" class="output"></div>
+    </div>
+
+    <!-- 15. GENERATORS -->
+    <div class="section">
+        <h2>15. Generators & Iterators</h2>
+        <pre>
+// Generator function (function*)
+function* numberGenerator() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+const gen = numberGenerator();
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+
+// Infinite generator
+function* infiniteSequence() {
+    let i = 0;
+    while (true) {
+        yield i++;
+    }
+}
+
+// Custom iterator
+const range = {
+    from: 1,
+    to: 5,
+    [Symbol.iterator]() {
+        return {
+            current: this.from,
+            last: this.to,
+            next() {
+                if (this.current <= this.last) {
+                    return { done: false, value: this.current++ };
+                } else {
+                    return { done: true };
+                }
+            }
+        };
+    }
+};
+
+for (let num of range) {
+    console.log(num); // 1, 2, 3, 4, 5
+}
+        </pre>
+        <button onclick="demonstrateGenerators()">Run Generator Demo</button>
+        <div id="gen-output" class="output"></div>
+    </div>
+
+    <!-- 16. DESTRUCTURING & SPREAD -->
+    <div class="section">
+        <h2>16. Destructuring & Spread/Rest</h2>
+        <pre>
+// Array destructuring
+const [first, second, ...rest] = [1, 2, 3, 4, 5];
+
+// Object destructuring
+const { name, age, ...others } = { 
+    name: 'John', 
+    age: 30, 
+    city: 'NYC',
+    country: 'USA'
+};
+
+// Spread operator
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
+
+// Rest parameters
+function sum(...numbers) {
+    return numbers.reduce((acc, n) => acc + n, 0);
+}
+
+// Default values
+const { x = 10, y = 20 } = { x: 5 };
+        </pre>
+        <button onclick="demonstrateDestructuring()">Run Destructuring Demo</button>
+        <div id="destruct-output" class="output"></div>
+    </div>
+
+    <!-- 17. MODULES -->
+    <div class="section">
+        <h2>17. Modules (ES6)</h2>
+        <pre>
+// Export (module.js)
+export const PI = 3.14159;
+export function add(a, b) { return a + b; }
+export default class Calculator { }
+
+// Import
+import Calculator from './module.js';
+import { PI, add } from './module.js';
+import * as MathUtils from './module.js';
+
+// CommonJS (Node.js)
+module.exports = { PI, add };
+const { PI, add } = require('./module.js');
+
+// Dynamic imports
+async function loadModule() {
+    const module = await import('./module.js');
+    module.default();
+}
+        </pre>
+    </div>
+
+    <!-- 18. STRICT MODE -->
+    <div class="section">
+        <h2>18. Strict Mode</h2>
+        <pre>
+"use strict";
+
+// Prevents common mistakes:
+// 1. No undeclared variables
+// x = 10; // Error
+
+// 2. No duplicate parameters
+// function sum(a, a) { } // Error
+
+// 3. No deleting variables
+// var x = 10;
+// delete x; // Error
+
+// 4. 'this' is undefined in functions
+function test() {
+    console.log(this); // undefined in strict mode
+}
+
+// 5. Prevents using reserved keywords
+// var let = 10; // Error
+        </pre>
+    </div>
+
+    <!-- 19. POLYFILLS -->
+    <div class="section">
+        <h2>19. Polyfills (Custom Implementations)</h2>
+        <pre>
+// Array.prototype.map polyfill
+if (!Array.prototype.myMap) {
+    Array.prototype.myMap = function(callback) {
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result.push(callback(this[i], i, this));
+        }
+        return result;
+    };
+}
+
+// Array.prototype.filter polyfill
+Array.prototype.myFilter = function(callback) {
+    const result = [];
+    for (let i = 0; i < this.length; i++) {
+        if (callback(this[i], i, this)) {
+            result.push(this[i]);
+        }
+    }
+    return result;
+};
+
+// Array.prototype.reduce polyfill
+Array.prototype.myReduce = function(callback, initialValue) {
+    let accumulator = initialValue;
+    for (let i = 0; i < this.length; i++) {
+        if (accumulator !== undefined) {
+            accumulator = callback(accumulator, this[i], i, this);
+        } else {
+            accumulator = this[i];
+        }
+    }
+    return accumulator;
+};
+        </pre>
+        <button onclick="demonstratePolyfills()">Run Polyfill Demo</button>
+        <div id="polyfill-output" class="output"></div>
+    </div>
+
+    <!-- 20. WEB APIs -->
+    <div class="section">
+        <h2>20. Important Web APIs</h2>
+        <pre>
+// LocalStorage
+localStorage.setItem('key', 'value');
+const value = localStorage.getItem('key');
+localStorage.removeItem('key');
+localStorage.clear();
+
+// SessionStorage
+sessionStorage.setItem('key', 'value');
+
+// Fetch API
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log('Element is visible');
+        }
+    });
+});
+
+// Mutation Observer
+const mutationObserver = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        console.log('DOM changed:', mutation);
+    });
+});
+        </pre>
+    </div>
+
+    <script>
+        // ========== DEMONSTRATION FUNCTIONS ==========
+
+        function demonstrateHoisting() {
+            const output = document.getElementById('hoisting-output');
+            let result = '';
+
+            try {
+                result += 'Before declaration: ' + typeof hoistedVar2 + '<br>';
+                var hoistedVar2 = "I'm hoisted";
+                result += 'After declaration: ' + hoistedVar2 + '<br>';
+
+                hoistedFunc2();
+                function hoistedFunc2() {
+                    result += 'Function hoisting works!<br>';
+                }
+            } catch (e) {
+                result += 'Error: ' + e.message;
+            }
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateClosures() {
+            const output = document.getElementById('closure-output');
+            
+            function createCounter() {
+                let count = 0;
+                return {
+                    increment: () => ++count,
+                    decrement: () => --count,
+                    getCount: () => count
+                };
+            }
+
+            const counter = createCounter();
+            let result = '';
+            result += 'Initial count: ' + counter.getCount() + '<br>';
+            result += 'After increment: ' + counter.increment() + '<br>';
+            result += 'After increment: ' + counter.increment() + '<br>';
+            result += 'After decrement: ' + counter.decrement() + '<br>';
+            result += 'Final count: ' + counter.getCount() + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateThis() {
+            const output = document.getElementById('this-output');
+            let result = '';
+
+            const obj = {
+                name: 'MyObject',
+                regularMethod: function() {
+                    return this.name;
+                },
+                arrowMethod: () => {
+                    return this.name;
+                }
+            };
+
+            result += 'Regular method: ' + obj.regularMethod() + '<br>';
+            result += 'Arrow method: ' + obj.arrowMethod() + ' (undefined - lexical this)<br>';
+
+            const person = { name: 'Alice' };
+            function greet(greeting) {
+                return greeting + ', ' + this.name;
+            }
+
+            result += 'Using call: ' + greet.call(person, 'Hello') + '<br>';
+            result += 'Using apply: ' + greet.apply(person, ['Hi']) + '<br>';
+
+            const boundGreet = greet.bind(person);
+            result += 'Using bind: ' + boundGreet('Hey') + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstratePromises() {
+            const output = document.getElementById('promise-output');
+            let result = 'Promise executing...<br>';
+            output.innerHTML = result;
+
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('Promise resolved after 1 second!');
+                }, 1000);
+            });
+
+            promise
+                .then(value => {
+                    result += value + '<br>';
+                    return 'Second then';
+                })
+                .then(value => {
+                    result += value + '<br>';
+                    output.innerHTML = result;
+                })
+                .catch(error => {
+                    result += 'Error: ' + error;
+                    output.innerHTML = result;
+                });
+        }
+
+        function demonstrateEventLoop() {
+            const output = document.getElementById('eventloop-output');
+            let result = '';
+
+            result += '1. Synchronous code<br>';
+
+            setTimeout(() => {
+                result += '4. Macro task (setTimeout)<br>';
+                output.innerHTML = result;
+            }, 0);
+
+            Promise.resolve().then(() => {
+                result += '3. Micro task (Promise)<br>';
+                output.innerHTML = result;
+            });
+
+            result += '2. Synchronous code<br>';
+            output.innerHTML = result;
+        }
+
+        function demonstratePrototype() {
+            const output = document.getElementById('prototype-output');
+            let result = '';
+
+            function Animal(name) {
+                this.name = name;
+            }
+
+            Animal.prototype.speak = function() {
+                return this.name + ' makes a sound';
+            };
+
+            function Dog(name, breed) {
+                Animal.call(this, name);
+                this.breed = breed;
+            }
+
+            Dog.prototype = Object.create(Animal.prototype);
+            Dog.prototype.constructor = Dog;
+
+            Dog.prototype.bark = function() {
+                return this.name + ' barks!';
+            };
+
+            const myDog = new Dog('Buddy', 'Golden Retriever');
+            result += myDog.speak() + '<br>';
+            result += myDog.bark() + '<br>';
+            result += 'Breed: ' + myDog.breed + '<br>';
+            result += 'Is Dog? ' + (myDog instanceof Dog) + '<br>';
+            result += 'Is Animal? ' + (myDog instanceof Animal) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        let listItemCount = 3;
+        function addListItem() {
+            const list = document.getElementById('heroList');
+            const newItem = document.createElement('li');
+            newItem.textContent = 'Hero ' + (++listItemCount);
+            list.appendChild(newItem);
+        }
+
+        // Event delegation setup
+        document.getElementById('heroList').addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI') {
+                alert('Clicked: ' + e.target.textContent);
+            }
+        });
+
+        function demonstrateEventEmitter() {
+            const output = document.getElementById('emitter-output');
+            let result = '';
+
+            class EventEmitter {
+                constructor() {
+                    this.events = {};
+                }
+
+                on(event, listener) {
+                    if (!this.events[event]) {
+                        this.events[event] = [];
+                    }
+                    this.events[event].push(listener);
+                }
+
+                emit(event, ...args) {
+                    if (this.events[event]) {
+                        this.events[event].forEach(listener => {
+                            listener(...args);
+                        });
+                    }
+                }
+
+                off(event, listenerToRemove) {
+                    if (this.events[event]) {
+                        this.events[event] = this.events[event]
+                            .filter(listener => listener !== listenerToRemove);
+                    }
+                }
+            }
+
+            const emitter = new EventEmitter();
+
+            emitter.on('userLoggedIn', (user) => {
+                result += 'User logged in: ' + user.name + '<br>';
+                output.innerHTML = result;
+            });
+
+            emitter.on('userLoggedIn', (user) => {
+                result += 'Sending welcome email to: ' + user.name + '<br>';
+                output.innerHTML = result;
+            });
+
+            emitter.emit('userLoggedIn', { name: 'John Doe' });
+        }
+
+        // Debouncing demo
+        function debounce(func, delay) {
+            let timeoutId;
+            return function(...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    func.apply(this, args);
+                }, delay);
+            };
+        }
+
+        const debouncedSearch = debounce((query) => {
+            const output = document.getElementById('debounce-output');
+            output.innerHTML = 'Searching for: "' + query + '" (debounced - waited 500ms)';
+        }, 500);
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            debouncedSearch(e.target.value);
+        });
+
+        function demonstrateCurrying() {
+            const output = document.getElementById('curry-output');
+            let result = '';
+
+            function curry(func) {
+                return function curried(...args) {
+                    if (args.length >= func.length) {
+                        return func.apply(this, args);
+                    } else {
+                        return function(...args2) {
+                            return curried.apply(this, args.concat(args2));
+                        };
+                    }
+                };
+            }
+
+            function sum(a, b, c) {
+                return a + b + c;
+            }
+
+            const curriedSum = curry(sum);
+            result += 'curriedSum(1)(2)(3) = ' + curriedSum(1)(2)(3) + '<br>';
+            result += 'curriedSum(1, 2)(3) = ' + curriedSum(1, 2)(3) + '<br>';
+            result += 'curriedSum(1)(2, 3) = ' + curriedSum(1)(2, 3) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateCallApplyBind() {
+            const output = document.getElementById('cab-output');
+            let result = '';
+
+            const person = {
+                firstName: 'John',
+                lastName: 'Doe'
+            };
+
+            function greet(greeting, punctuation) {
+                return greeting + ' ' + this.firstName + ' ' + this.lastName + punctuation;
+            }
+
+            result += 'Using call: ' + greet.call(person, 'Hello', '!') + '<br>';
+            result += 'Using apply: ' + greet.apply(person, ['Hi', '?']) + '<br>';
+
+            const greetJohn = greet.bind(person);
+            result += 'Using bind: ' + greetJohn('Hey', '!!!') + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateCloning() {
+            const output = document.getElementById('clone-output');
+            let result = '';
+
+            const original = { 
+                a: 1, 
+                b: { c: 2 },
+                d: [1, 2, 3]
+            };
+
+            // Shallow clone
+            const shallow = { ...original };
+            shallow.b.c = 999;
+            result += 'Original after shallow clone mutation: ' + JSON.stringify(original) + '<br>';
+
+            // Reset
+            original.b.c = 2;
+
+            // Deep clone
+            function deepClone(obj) {
+                if (obj === null || typeof obj !== 'object') return obj;
+                if (obj instanceof Array) return obj.map(item => deepClone(item));
+                
+                const cloned = {};
+                for (let key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        cloned[key] = deepClone(obj[key]);
+                    }
+                }
+                return cloned;
+            }
+
+            const deep = deepClone(original);
+            deep.b.c = 999;
+            result += 'Original after deep clone mutation: ' + JSON.stringify(original) + '<br>';
+            result += 'Deep clone: ' + JSON.stringify(deep) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateMemoization() {
+            const output = document.getElementById('memo-output');
+            let result = '';
+            let callCount = 0;
+
+            function memoize(fn) {
+                const cache = {};
+                return function(...args) {
+                    const key = JSON.stringify(args);
+                    if (cache[key]) {
+                        result += 'From cache: ';
+                        return cache[key];
+                    }
+                    result += 'Calculating: ';
+                    const value = fn(...args);
+                    cache[key] = value;
+                    return value;
+                };
+            }
+
+            const expensiveOperation = memoize(function(n) {
+                callCount++;
+                return n * n;
+            });
+
+            result += expensiveOperation(5) + '<br>';
+            output.innerHTML = result;
+            
+            result += expensiveOperation(5) + '<br>';
+            output.innerHTML = result;
+            
+            result += expensiveOperation(10) + '<br>';
+            output.innerHTML = result;
+            
+            result += 'Total function calls: ' + callCount + ' (should be 2)<br>';
+            output.innerHTML = result;
+        }
+
+        function demonstrateHOF() {
+            const output = document.getElementById('hof-output');
+            let result = '';
+
+            const numbers = [1, 2, 3, 4, 5];
+
+            result += 'Original: ' + JSON.stringify(numbers) + '<br>';
+            result += 'Mapped (x2): ' + JSON.stringify(numbers.map(n => n * 2)) + '<br>';
+            result += 'Filtered (evens): ' + JSON.stringify(numbers.filter(n => n % 2 === 0)) + '<br>';
+            result += 'Reduced (sum): ' + numbers.reduce((acc, n) => acc + n, 0) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateGenerators() {
+            const output = document.getElementById('gen-output');
+            let result = '';
+
+            function* numberGenerator() {
+                yield 1;
+                yield 2;
+                yield 3;
+            }
+
+            const gen = numberGenerator();
+            result += 'gen.next(): ' + JSON.stringify(gen.next()) + '<br>';
+            result += 'gen.next(): ' + JSON.stringify(gen.next()) + '<br>';
+            result += 'gen.next(): ' + JSON.stringify(gen.next()) + '<br>';
+            result += 'gen.next(): ' + JSON.stringify(gen.next()) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstrateDestructuring() {
+            const output = document.getElementById('destruct-output');
+            let result = '';
+
+            const [first, second, ...rest] = [1, 2, 3, 4, 5];
+            result += 'Array destructuring: first=' + first + ', second=' + second + 
+                      ', rest=' + JSON.stringify(rest) + '<br>';
+
+            const { name, age, ...others } = { 
+                name: 'John', 
+                age: 30, 
+                city: 'NYC' 
+            };
+            result += 'Object destructuring: name=' + name + ', age=' + age + 
+                      ', others=' + JSON.stringify(others) + '<br>';
+
+            const arr1 = [1, 2, 3];
+            const arr2 = [...arr1, 4, 5];
+            result += 'Spread: ' + JSON.stringify(arr2) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        function demonstratePolyfills() {
+            const output = document.getElementById('polyfill-output');
+            let result = '';
+
+            // Using custom polyfills
+            Array.prototype.myMap = function(callback) {
+                const result = [];
+                for (let i = 0; i < this.length; i++) {
+                    result.push(callback(this[i], i, this));
+                }
+                return result;
+            };
+
+            const numbers = [1, 2, 3, 4, 5];
+            const doubled = numbers.myMap(n => n * 2);
+
+            result += 'Original: ' + JSON.stringify(numbers) + '<br>';
+            result += 'Using myMap: ' + JSON.stringify(doubled) + '<br>';
+
+            output.innerHTML = result;
+        }
+
+        console.log('🚀 JavaScript Interview Concepts Loaded Successfully!');
+    </script>
+</body>
+
+</html>

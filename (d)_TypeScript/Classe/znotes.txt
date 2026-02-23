@@ -1,0 +1,14 @@
+npm install typescript
+npm install -g typescript
+
+npx tsc app.ts
+
+npx tsc app.ts --watch
+
+tsc --init 
+Genereate config file
+
+// notes here
+some variable name like name , age are already in window object so they throw error
+
+array have same datatype tuples have different datatype
